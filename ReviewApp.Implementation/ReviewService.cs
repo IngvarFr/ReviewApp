@@ -22,6 +22,12 @@ namespace ReviewApp.Implementation
             return list.Count();
         }
 
+        public int ReviewerCountForMovie(int movie)
+        {
+            var list = Reviews.Where(r => r.Movie == movie).Select(r => r.Reviewer).Distinct();
+            return list.Count();
+        }
+
         public int ReviewsFromReviewer(int reviewer)
         {
             var list = Reviews.Where(r => r.Reviewer == reviewer);

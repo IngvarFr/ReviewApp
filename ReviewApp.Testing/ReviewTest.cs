@@ -80,5 +80,29 @@ namespace ReviewApp.Testing
             Assert.True(service.GradeCountFromReviewer(2, 5) == 2);
             Assert.True(service.GradeCountFromReviewer(3, 4) == 1);
         }
+
+        [Fact]
+        public void HowManyReviewsForMovieTest()
+        {
+            IReviewService service = new ReviewService();
+            var reviews = new List<Review>()
+            {
+                new Review(){ Reviewer = 1, Movie = 1000, Grade = 1, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 4, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 6343, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 6343, Grade = 4, Date = "2003-02-03" },
+            };
+            service.Reviews = reviews;
+
+            Assert.True(service.ReviewerCountForMovie(2341) == 3);
+            Assert.True(service.ReviewerCountForMovie(6343) == 2);
+            Assert.True(service.ReviewerCountForMovie(1000) == 1);
+        }
     }
 }
