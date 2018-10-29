@@ -10,6 +10,6 @@ namespace ReviewApp.Implementation
         List<Review> Reviews { get; set; }
 
         int HowManyReviewsFromReviewer(int reviewer);
-        
+        double AverageGradeFromReviewer(int reviewer);
     }
 }

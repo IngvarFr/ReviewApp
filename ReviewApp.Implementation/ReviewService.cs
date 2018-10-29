@@ -10,6 +10,12 @@ namespace ReviewApp.Implementation
     {
         public List<Review> Reviews { get; set; }
 
+        public double AverageGradeFromReviewer(int reviewer)
+        {
+            var grades = Reviews.Where(r => r.Reviewer == reviewer).Select(r => r.Grade);
+            return grades.Average();
+        }
+
         public int HowManyReviewsFromReviewer(int reviewer)
         {
             var list = Reviews.Where(r => r.Reviewer == reviewer);
