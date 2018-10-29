@@ -9,7 +9,8 @@ namespace ReviewApp.Implementation
     {
         List<Review> Reviews { get; set; }
 
-        int HowManyReviewsFromReviewer(int reviewer);
+        int ReviewsFromReviewer(int reviewer);
         double AverageGradeFromReviewer(int reviewer);
+        int GradeCountFromReviewer(int reviewer, int grade);
     }
 }

@@ -16,7 +16,13 @@ namespace ReviewApp.Implementation
             return grades.Average();
         }
 
-        public int HowManyReviewsFromReviewer(int reviewer)
+        public int GradeCountFromReviewer(int reviewer, int grade)
+        {
+            var list = Reviews.Where(r => r.Reviewer == reviewer && r.Grade == grade);
+            return list.Count();
+        }
+
+        public int ReviewsFromReviewer(int reviewer)
         {
             var list = Reviews.Where(r => r.Reviewer == reviewer);
             return list.Count();
