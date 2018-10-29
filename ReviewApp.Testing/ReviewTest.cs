@@ -177,7 +177,7 @@ namespace ReviewApp.Testing
         }
 
         [Fact]
-        public void TopReviewers()
+        public void TopReviewersTest()
         {
             IReviewService service = new ReviewService();
             var reviews = new List<Review>()
@@ -198,6 +198,31 @@ namespace ReviewApp.Testing
             Assert.True(service.TopReviewers()[0] == 1);
             Assert.True(service.TopReviewers()[1] == 2);
             Assert.True(service.TopReviewers().Count == 3);
+        }
+
+        [Fact]
+        public void TopMoviesTest()
+        {
+            IReviewService service = new ReviewService();
+            var reviews = new List<Review>()
+            {
+                new Review(){ Reviewer = 1, Movie = 1000, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 4, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 6343, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 6343, Grade = 4, Date = "2003-02-03" },
+            };
+            service.Reviews = reviews;
+
+            var topMovies = service.TopMovies(3);
+            Assert.True(service.TopMovies(3)[0] == 1000);
+            Assert.True(service.TopMovies(3)[1] == 6343);
+
         }
 
     }

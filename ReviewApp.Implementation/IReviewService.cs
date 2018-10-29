@@ -17,5 +17,6 @@ namespace ReviewApp.Implementation
         int GradeCountForMovie(int movie, int grade);
         List<int> MostTopGradesMovies();
         List<int> TopReviewers();
+        List<int> TopMovies(int count);
     }
 }
