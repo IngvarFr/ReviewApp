@@ -51,5 +51,11 @@ namespace ReviewApp.Implementation
             var list = Reviews.Where(r => r.Grade == 5).Select(r => r.Movie).GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Distinct().Take(10);
             return list.ToList();
         }
+
+        public List<int> TopReviewers()
+        {
+            var list = Reviews.Select(r => r.Reviewer).GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Distinct().Take(10);
+            return list.ToList();
+        }
     }
 }
