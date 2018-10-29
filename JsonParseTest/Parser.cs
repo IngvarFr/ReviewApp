@@ -8,11 +8,9 @@ using System.IO;
 
 namespace JsonParseTest
 {
-    class Parser
+    public class Parser
     {
-        public List<Review> Reviews { get; set; }
-
-        private JsonSerializer serializer;
+        public IEnumerable<Review> Reviews { get; set; }
 
         public Parser()
         {
@@ -21,7 +19,7 @@ namespace JsonParseTest
 
         public void ParseReviews()
         {
-            Reviews = JsonConvert.DeserializeObject<List<Review>>(File.ReadAllText("ratings.json"));
+            Reviews = JsonConvert.DeserializeObject<IEnumerable<Review>>(File.ReadAllText("ratings.json"));
         }
         
     }
