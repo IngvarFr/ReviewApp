@@ -13,7 +13,13 @@ namespace ReviewApp.Implementation
         public double AverageGradeFromReviewer(int reviewer)
         {
             var grades = Reviews.Where(r => r.Reviewer == reviewer).Select(r => r.Grade);
-            return grades.Average();
+            return Math.Round(grades.Average(),2,MidpointRounding.AwayFromZero);
+        }
+
+        public double AverageGradeOfMovie(int movie)
+        {
+            var grades = Reviews.Where(r => r.Movie == movie).Select(r => r.Grade);
+            return Math.Round(grades.Average(),2, MidpointRounding.AwayFromZero);
         }
 
         public int GradeCountFromReviewer(int reviewer, int grade)
