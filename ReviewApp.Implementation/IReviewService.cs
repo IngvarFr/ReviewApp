@@ -14,5 +14,6 @@ namespace ReviewApp.Implementation
         int GradeCountFromReviewer(int reviewer, int grade);
         int ReviewerCountForMovie(int movie);
         double AverageGradeOfMovie(int movie);
+        int GradeCountForMovie(int movie, int grade);
     }
 }

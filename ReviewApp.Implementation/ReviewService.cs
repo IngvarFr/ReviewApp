@@ -22,6 +22,12 @@ namespace ReviewApp.Implementation
             return Math.Round(grades.Average(),2, MidpointRounding.AwayFromZero);
         }
 
+        public int GradeCountForMovie(int movie, int grade)
+        {
+            var list = Reviews.Where(r => r.Movie == movie && r.Grade == grade);
+            return list.Count();
+        }
+
         public int GradeCountFromReviewer(int reviewer, int grade)
         {
             var list = Reviews.Where(r => r.Reviewer == reviewer && r.Grade == grade);
