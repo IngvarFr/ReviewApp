@@ -92,5 +92,11 @@ namespace ReviewApp.Implementation
             var list = Movies.OrderByDescending(m => m.AvgRating).Take(count).Select(m => m.Id);
             return list.ToList();
         }
+
+        public List<int> MoviesByReviewer(int reviewer)
+        {
+            var list = Reviews.Where(r => r.Reviewer == reviewer).OrderByDescending(r => r.Grade).ThenByDescending(r => r.Date).Select(r => r.Movie).Distinct();
+            return list.ToList();
+        }
     }
 }

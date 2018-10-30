@@ -219,10 +219,32 @@ namespace ReviewApp.Testing
             };
             service.Reviews = reviews;
 
-            var topMovies = service.TopMovies(3);
             Assert.True(service.TopMovies(3)[0] == 1000);
             Assert.True(service.TopMovies(3)[1] == 6343);
 
+        }
+
+        [Fact]
+        public void MoviesByReviewerTest()
+        {
+            IReviewService service = new ReviewService();
+            var reviews = new List<Review>()
+            {
+                new Review(){ Reviewer = 1, Movie = 1000, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 1, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 4, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 6343, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 3, Date = "2003-02-03" },
+                new Review(){ Reviewer = 2, Movie = 2341, Grade = 5, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 2341, Grade = 2, Date = "2003-02-03" },
+                new Review(){ Reviewer = 3, Movie = 6343, Grade = 4, Date = "2003-02-03" },
+            };
+            service.Reviews = reviews;
+
+            Assert.True(service.MoviesByReviewer(1)[0] == 1000);
+            Assert.True(service.MoviesByReviewer(1).Count == 2);
         }
 
     }
