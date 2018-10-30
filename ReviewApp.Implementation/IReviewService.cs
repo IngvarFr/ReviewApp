@@ -19,5 +19,6 @@ namespace ReviewApp.Implementation
         List<int> TopReviewers();
         List<int> TopMovies(int count);
         List<int> MoviesByReviewer(int reviewer);
+        List<int> ReviewersOfMovie(int movie);
     }
 }
