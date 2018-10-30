@@ -8,8 +8,8 @@ namespace ReviewApp.Implementation
 {
     public class ReviewService : IReviewService
     {
-        private List<Review> _reviews;
-        public List<Review> Reviews
+        private IEnumerable<Review> _reviews;
+        public IEnumerable<Review> Reviews
         {
             get{ return _reviews; }
   
@@ -31,12 +31,12 @@ namespace ReviewApp.Implementation
                 Movies.Add(new Movie() { Id = movie });
             }
 
-            foreach (var movie in Movies)
-            {
-                var grades = _reviews.Where(r => r.Movie == movie.Id).Select(r => r.Grade);
-                movie.TopGrades = grades.Where(g => g == 5).Count();
-                movie.AvgRating = Math.Round(grades.Average(), 2, MidpointRounding.AwayFromZero);
-            }
+            //foreach (var movie in Movies)
+            //{
+            //    var grades = _reviews.Where(r => r.Movie == movie.Id).Select(r => r.Grade);
+            //    movie.TopGrades = grades.Where(g => g == 5).Count();
+            //    movie.AvgRating = Math.Round(grades.Average(), 2, MidpointRounding.AwayFromZero);
+            //}
         }
 
         public double AverageGradeFromReviewer(int reviewer)
@@ -77,7 +77,7 @@ namespace ReviewApp.Implementation
 
         public List<int> MostTopGradesMovies()
         {
-            var list = Movies.OrderByDescending(m => m.TopGrades).Take(10).Select(m => m.Id);
+            var list = Reviews.Where(r => r.Grade == 5).Select(r => r.Movie).GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Distinct().Take(10);
             return list.ToList();
         }
 

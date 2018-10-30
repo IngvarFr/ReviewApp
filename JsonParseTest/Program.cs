@@ -17,6 +17,7 @@ namespace JsonParseTest
             Console.WriteLine($"Time: {time}");
             Console.WriteLine($"Reviews: {parser.Reviews.ToList().Count}");
             Console.ReadLine();
+            
         }
     }
 }

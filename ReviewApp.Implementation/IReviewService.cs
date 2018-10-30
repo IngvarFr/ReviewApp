@@ -7,7 +7,7 @@ namespace ReviewApp.Implementation
 {
     public interface IReviewService
     {
-        List<Review> Reviews { get; set; }
+        IEnumerable<Review> Reviews { get; set; }
 
         int ReviewsFromReviewer(int reviewer);
         double AverageGradeFromReviewer(int reviewer);
