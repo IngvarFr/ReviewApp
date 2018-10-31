@@ -24,12 +24,17 @@ namespace ReviewApp.Implementation
         public void PopulateMovies()
         {
             Movies = new List<Movie>();
+            var movies = _reviews.Select(r => r.Movie).Distinct();
 
-            var list = _reviews.Select(r => r.Movie).Distinct();
-            foreach (var movie in list)
+            foreach (var movie in movies)
             {
-                Movies.Add(new Movie() { Id = movie });
+                Movies.Add(new Movie() { Id = movie, Grades = new List<int>() });
             }
+
+            //foreach (var rev in _reviews)
+            //{
+            //    GetMovieById(rev.Movie).Grades.Add(rev.Grade);
+            //}
 
             //foreach (var movie in Movies)
             //{
@@ -37,6 +42,11 @@ namespace ReviewApp.Implementation
             //    movie.TopGrades = grades.Where(g => g == 5).Count();
             //    movie.AvgRating = Math.Round(grades.Average(), 2, MidpointRounding.AwayFromZero);
             //}
+        }
+
+        private Movie GetMovieById(int id)
+        {
+            return Movies.FirstOrDefault(m => m.Id == id);
         }
 
         public double AverageGradeFromReviewer(int reviewer)
@@ -77,7 +87,7 @@ namespace ReviewApp.Implementation
 
         public List<int> MostTopGradesMovies()
         {
-            var list = Reviews.Where(r => r.Grade == 5).Select(r => r.Movie).GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Distinct().Take(10);
+            var list = _reviews.Where(r => r.Grade == 5).Select(r => r.Movie).GroupBy(i => i).OrderByDescending(grp => grp.Count()).Select(grp => grp.Key).Distinct().Take(10);
             return list.ToList();
         }
 
@@ -89,19 +99,23 @@ namespace ReviewApp.Implementation
 
         public List<int> TopMovies(int count)
         {
-            var list = Movies.OrderByDescending(m => m.AvgRating).Take(count).Select(m => m.Id);
-            return list.ToList();
+            //foreach (var movie in Movies)
+            //{
+            //    movie.AverageGrade = Math.Round(movie.Grades.Average(), 2, MidpointRounding.AwayFromZero);
+            //}
+
+            return Movies.OrderByDescending(m => m.AverageGrade).Take(count).Select(m => m.Id).ToList();
         }
 
         public List<int> MoviesByReviewer(int reviewer)
         {
-            var list = Reviews.Where(r => r.Reviewer == reviewer).OrderByDescending(r => r.Grade).ThenByDescending(r => r.Date).Select(r => r.Movie).Distinct();
+            var list = _reviews.Where(r => r.Reviewer == reviewer).OrderByDescending(r => r.Grade).ThenByDescending(r => r.Date).Select(r => r.Movie).Distinct();
             return list.ToList();
         }
 
         public List<int> ReviewersOfMovie(int movie)
         {
-            var list = Reviews.Where(r => r.Movie == movie).OrderByDescending(r => r.Grade).ThenByDescending(r => r.Date).Select(r => r.Reviewer).Distinct();
+            var list = _reviews.Where(r => r.Movie == movie).OrderByDescending(r => r.Grade).ThenByDescending(r => r.Date).Select(r => r.Reviewer).Distinct();
             return list.ToList();
         }
     }

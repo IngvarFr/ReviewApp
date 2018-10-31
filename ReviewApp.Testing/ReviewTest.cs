@@ -218,7 +218,7 @@ namespace ReviewApp.Testing
                 new Review(){ Reviewer = 3, Movie = 6343, Grade = 4, Date = "2003-02-03" },
             };
             service.Reviews = reviews;
-
+            var result = service.TopMovies(3);           
             Assert.True(service.TopMovies(3)[0] == 1000);
             Assert.True(service.TopMovies(3)[1] == 6343);
 
