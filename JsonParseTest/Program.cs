@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace JsonParseTest
 {
@@ -14,7 +15,9 @@ namespace JsonParseTest
             Console.WriteLine("Done");
             var time = end - beginning;
             Console.WriteLine($"Time: {time}");
+            Console.WriteLine($"Reviews: {parser.Reviews.ToList().Count}");
             Console.ReadLine();
+            
         }
     }
 }
