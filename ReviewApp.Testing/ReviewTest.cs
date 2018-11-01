@@ -221,7 +221,7 @@ namespace ReviewApp.Testing
             var result = service.TopMovies(3);           
             Assert.True(service.TopMovies(3)[0] == 1000);
             Assert.True(service.TopMovies(3)[1] == 6343);
-
+            Assert.True(service.TopMovies(3)[2] == 2341);
         }
 
         [Fact]

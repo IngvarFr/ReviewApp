@@ -96,8 +96,8 @@ namespace ReviewApp.Cnsl
 
             Console.WriteLine("Starting function nine");
             start = DateTime.Now;
-            Console.WriteLine("What are the top 5 movies (average rating): ");
-            foreach (var movie in service.TopMovies(5))
+            Console.WriteLine("What are the top 10 movies (average rating): ");
+            foreach (var movie in service.TopMovies(10))
             {
                 Console.Write(movie + ", ");
             }
