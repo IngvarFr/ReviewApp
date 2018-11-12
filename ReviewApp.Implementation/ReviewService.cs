@@ -105,7 +105,7 @@ namespace ReviewApp.Implementation
             //}
 
             return Movies.OrderByDescending(m => m.AverageGrade).Take(count).Select(m => m.Id).ToList();
-        }
+        
 
         public List<int> MoviesByReviewer(int reviewer)
         {
