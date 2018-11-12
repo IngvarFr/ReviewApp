@@ -52,7 +52,7 @@ namespace ReviewApp.Testing
             };
             service.Reviews = reviews;
 
-            Assert.True(service.AverageGradeFromReviewer(1) == 2.75);
+            Assert.True(service.AverageGradeFromReviewer(2) == 2.75);
             Assert.True(service.AverageGradeFromReviewer(2) == 3.25);
             Assert.True(service.AverageGradeFromReviewer(3) == 3);
         }
