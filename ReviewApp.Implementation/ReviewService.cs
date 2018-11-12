@@ -14,7 +14,7 @@ namespace ReviewApp.Implementation
         {
             var grades = Reviews.Where(r => r.Reviewer == reviewer).Select(r => r.Grade);
             return Math.Round(grades.Average(),2,MidpointRounding.AwayFromZero);
-        }
+        
 
         public double AverageGradeOfMovie(int movie)
         {
